@@ -33,6 +33,10 @@ module.exports = {
                     to: path.resolve(__dirname, '../admin/api')
                 },
                 {
+                    from: path.resolve(__dirname, './app/backups/'),
+                    to: path.resolve(__dirname, '../admin/backups')
+                },
+                {
                     from: path.resolve(__dirname, './app/assets/'),
                     to: path.resolve(__dirname, '../admin/assets')
                 }

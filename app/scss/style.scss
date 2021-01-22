@@ -14,11 +14,21 @@ iframe {
 
 .panel {
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between;
     padding: 12px;
     height: $panel_height;
     box-sizing: border-box;
     border-bottom: 1px solid #000;
+
+    .btn-down {
+        margin-left: -5px;
+        padding: 0 15px;
+    }
+
+    .dropdown {
+        margin-top: -10px;
+        width: 310px;
+    }
 }
 
 .loader {
