@@ -1,34 +1,47 @@
-[v-cloak] {
-    display: none;
-}
+@import "../../node_modules/uikit/src/scss/variables-theme.scss";
+@import "../../node_modules/uikit/src/scss/mixins-theme.scss";
+@import "../../node_modules/uikit/src/scss/uikit-theme.scss";
 
-.block {
-    width: 350px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-}
-button{
-    -webkit-writing-mode: horizontal-tb !important;
-    -webkit-appearance: button;
-    border-color: rgb(216, 216, 216) rgb(209, 209, 209) rgb(186, 186, 186);
-    border-radius: 3px;
-    border-style: solid;
-    border-width: 1px;
-    padding: 1px 7px 2px;
-    text-rendering: auto;
-    color: initial;
-    display: inline-block;
-    text-align: start;
-    margin: 0em;
-    font: 400 11px system-ui;
-}
+$panel_height: 64px;
 
 iframe {
     position: absolute;
     left: 0;
+    top: $panel_height;
+    width: 100%;
+    height: calc(100vh - #{$panel_height});
+}
+
+.panel {
+    display: flex;
+    justify-content: flex-end;
+    padding: 12px;
+    height: $panel_height;
+    box-sizing: border-box;
+    border-bottom: 1px solid #000;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    left: 0;
     top: 0;
     width: 100%;
     height: 100vh;
+    background-color: rgba(black, .5);
+    visibility: hidden;
+    opacity: 0;
+    transform: all .4s;
+
+    &.active {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+span {
+    color: white !important;
+    fill: white !important;
 }
