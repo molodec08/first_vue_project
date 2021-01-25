@@ -16,7 +16,13 @@ const App = {
             page: "index.html",
             showLoader: true,
             pageList: [],
-            backupList: []
+            backupList: [],
+
+            meta: {
+                title: "",
+                keywords: "",
+                description: ""
+            }
         }        
     },
     methods: {
@@ -41,6 +47,7 @@ const App = {
             this.showLoader = true;
             window.editor.open(page, () => {
                 this.showLoader = false;
+                this.meta = window.editor.metaEditor.getMeta();
             });
         },
 
@@ -66,12 +73,14 @@ const App = {
                     this.showLoader = false;
                 });
             })
+        },
+
+        applyMeta() {
+            window.editor.metaEditor.setMeta(this.meta.title, this.meta.keywords, this.meta.description);
         }
     },
     created() {
-        window.editor.open(this.page, () => {
-            this.showLoader = false;
-        });
+        this.openPage(this.page);
         axios
             .get("./api/pageList.php")
             .then((res) => {

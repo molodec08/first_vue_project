@@ -11,6 +11,7 @@
         <div class="panel">
             <div>
                 <button class="uk-button uk-button-default" uk-toggle="target: #modal-open">Открыть</button>
+                <button class="uk-button uk-button-default" uk-toggle="target: #modal-meta">Редактор МЕТА</button>
             </div>
             <div>
                 <button class="uk-button uk-button-primary" uk-toggle="target: #modal-save">Опубликовать</button>
@@ -27,6 +28,29 @@
                 </ul>
                 <p class="uk-text-right">
                     <button class="uk-button uk-button-default uk-modal-close" type="button">Отмена</button>
+                </p>
+            </div>
+        </div>
+
+        <div id="modal-meta" uk-modal>
+            <div class="uk-modal-dialog uk-modal-body">
+                <h2 class="uk-modal-title">Редактирование МЕТА тегов</h2>
+                <form>
+                    <div class="uk-margin">
+                        <input class="uk-input" type="text" placeholder="Title" v-model="meta.title">
+                    </div>
+            
+                    <div class="uk-margin">
+                        <textarea class="uk-textarea" rows="5" placeholder="Keywords" v-model="meta.keywords"></textarea>
+                    </div>
+
+                    <div class="uk-margin">
+                        <textarea class="uk-textarea" rows="5" placeholder="Description" v-model="meta.description"></textarea>
+                    </div>
+                </form>
+                <p class="uk-text-right">
+                    <button class="uk-button uk-button-default uk-modal-close" type="button">Отмена</button>
+                    <button class="uk-button uk-button-primary uk-modal-close" type="button" @click="applyMeta">Применить</button>
                 </p>
             </div>
         </div>
@@ -54,15 +78,6 @@
                 </p>
             </div>
         </div>
-
-        <!-- <div id="modal-warning" uk-modal>
-            <h2 class="uk-modal-title">Восстановление из бэкапа</h2>
-            <p v-if="!backupList.length">Вы действительно хотите восстановить страницу из этой резеврной копии? Все не сохранённые изменения будут утеряны!</p>
-            <p class="uk-text-right">
-                <button class="uk-button uk-button-default uk-modal-close" type="button">Отмена</button>
-                <button class="uk-button uk-button-primary uk-modal-close" type="button" @click="restoreBackup(backup)">Восстановить</button>
-            </p>
-        </div> -->
 
         <div class="loader" :class="{ 'active': showLoader }">
             <span uk-spinner="ratio: 4.5"></span>
