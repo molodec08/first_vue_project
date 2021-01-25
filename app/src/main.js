@@ -77,6 +77,18 @@ const App = {
 
         applyMeta() {
             window.editor.metaEditor.setMeta(this.meta.title, this.meta.keywords, this.meta.description);
+        },
+
+        enableLoader() {
+            this.showLoader = true;
+        },
+
+        disableLoader() {
+            this.showLoader = false;
+        },
+
+        errorNotification(msg) {
+            UIkit.notification({message: msg, status: 'danger'});
         }
     },
     created() {
@@ -90,4 +102,4 @@ const App = {
     }
 }
 
-Vue.createApp(App).mount('#app');
+window.vue = Vue.createApp(App).mount('#app');
