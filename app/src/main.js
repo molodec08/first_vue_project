@@ -22,7 +22,11 @@ const App = {
                 title: "",
                 keywords: "",
                 description: ""
-            }
+            },
+
+            auth: false,
+            password: "",
+            loginError: false
         }        
     },
     methods: {
@@ -79,6 +83,42 @@ const App = {
             window.editor.metaEditor.setMeta(this.meta.title, this.meta.keywords, this.meta.description);
         },
 
+        login() {
+            if (this.password.length > 5) {
+                axios
+                    .post("./api/login.php", { "password": this.password })
+                    .then((res) => {
+                        if (res.data.auth === true) {
+                            this.auth = true;
+                            this.start();
+                        } else {
+                            this.loginError = true;
+                        }
+                    })
+            } else {
+                this.loginError = true;
+            }
+        },
+
+        logout() {
+            axios
+                .get("./api/logout.php")
+                .then((res) => {
+                    console.log(res.data);
+                    window.location.replace("/");
+                })
+        },
+
+        start() {
+            this.openPage(this.page);
+            axios
+                .get("./api/pageList.php")
+                .then((res) => {
+                    this.pageList = res.data;
+                });
+            this.loadBackupList();
+        },
+
         enableLoader() {
             this.showLoader = true;
         },
@@ -92,13 +132,14 @@ const App = {
         }
     },
     created() {
-        this.openPage(this.page);
         axios
-            .get("./api/pageList.php")
+            .get("./api/checkAuth.php")
             .then((res) => {
-                this.pageList = res.data;
+                if (res.data.auth === true) {
+                    this.auth = true;
+                    this.start();
+                }
             });
-        this.loadBackupList();
     }
 }
 

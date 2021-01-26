@@ -55,3 +55,32 @@ span {
     color: white !important;
     fill: white !important;
 }
+
+.login-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(black, .5);
+
+    .login {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+        padding: 30px;
+        border-radius: 4px;
+        background-color: #fff;
+
+        button {
+            margin: 15px 0 0 0;
+            align-self: flex-end;
+        }
+
+        .login-error {
+            color: red !important; 
+        }
+    }
+}
